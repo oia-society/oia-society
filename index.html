@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OIA Society</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+:root{
+  --bg:#0b0f14;
+  --panel:#111827;
+  --panel2:#1f2937;
+  --accent:#6366f1;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+body{background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:70px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+nav a{
+  margin:0 1.2rem;
+  color:var(--muted);
+  font-weight:600;
+}
+nav a:hover{color:white}
+
+.instagram{
+  position:absolute;
+  right:25px;
+  font-size:1.7rem;
+  background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ================= BUTTON ================= */
+.btn{
+  padding:.9rem 2rem;
+  border-radius:14px;
+  font-weight:700;
+  background:linear-gradient(135deg,#ff416c,#ff4b2b,#1fa2ff,#12d8fa);
+  background-size:300% 300%;
+  animation:grad 6s ease infinite;
+  color:white;
+  display:inline-block;
+  margin:.5rem;
+  cursor:pointer;
+}
+@keyframes grad{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh;
+  padding:2rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero img{width:160px;margin-bottom:1rem}
+.hero h1{font-size:3rem}
+.hero p{color:var(--muted);max-width:650px}
+
+/* ================= SECTIONS ================= */
+section{
+  padding:5rem 6%;
+  max-width:1200px;
+  margin:auto;
+}
+.section-title{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:2rem;
+}
+
+/* ================= NOTICE ================= */
+.notice{
+  background:var(--panel2);
+  padding:1.5rem;
+  border-radius:12px;
+  border-left:5px solid var(--accent);
+  margin-bottom:1rem;
+}
+
+/* ================= CAROUSEL ================= */
+.carousel{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1.5rem;
+}
+.arrow{
+  font-size:2rem;
+  cursor:pointer;
+  padding:.7rem 1.1rem;
+  border-radius:50%;
+  background:#1f2937;
+}
+.card{
+  width:280px;
+  background:var(--panel);
+  border-radius:18px;
+  padding:1rem;
+  text-align:center;
+  cursor:pointer;
+}
+.card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+/* ================= PROFILE ================= */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+.overlay.open{display:flex}
+.profile{
+  background:#020617;
+  padding:2rem;
+  width:90%;
+  max-width:500px;
+  border-radius:22px;
+  text-align:center;
+}
+.profile img{
+  width:200px;
+  height:200px;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+/* ================= FEEDBACK ================= */
+.feedback-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:var(--accent);
+  padding:1rem 1.4rem;
+  border-radius:999px;
+  cursor:pointer;
+  z-index:2000;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2500;
+}
+.modal-content{
+  background:#020617;
+  padding:2rem;
+  border-radius:14px;
+  width:90%;
+  max-width:450px;
+}
+.modal input,.modal textarea{
+  width:100%;
+  padding:.7rem;
+  margin:.5rem 0;
+  border-radius:8px;
+  border:none;
+  background:#1f2937;
+  color:white;
+}
+.public-feedback{
+  background:var(--panel);
+  padding:1rem;
+  border-radius:12px;
+  margin-bottom:.7rem;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:3rem;
+  text-align:center;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <a href="#mission">Mission</a>
+  <a href="#notice">Notices</a>
+  <a href="#leadership">Leadership</a>
+  <a href="#directorates">Directorates</a>
+  <a href="#pioneers">Pioneers</a>
+  <a href="#forms">Forms</a>
+</nav>
+
+<a class="instagram"
+   href="https://www.instagram.com/oia_society/"
+   target="_blank">
+  <i class="fab fa-instagram"></i>
+</a>
+</header>
+
+<section class="hero">
+  <img src="logo.png">
+  <h1>Online Integrity & Awareness</h1>
+  <p>Building safer digital spaces for students.</p>
+
+  <div>
+    <a class="btn"
+       href="https://docs.google.com/forms/d/e/1FAIpQLSfwd55_BpKDIZWuOIhoma8n3rCmhNxRq0ZY-OkYTpSoKUiQ1g/viewform"
+       target="_blank">
+      Volunteer Registration
+    </a>
+
+    <span class="btn" style="opacity:.6;cursor:not-allowed;">
+      Database / Analytical Form
+    </span>
+  </div>
+</section>
+
+<section id="mission">
+<h2 class="section-title">Our Mission</h2>
+<p>
+Promoting awareness, psychological support, and online integrity
+to ensure safe, respectful digital spaces for all students.
+</p>
+</section>
+
+<section id="notice">
+<h2 class="section-title">Announcements</h2>
+<div class="notice">
+  <strong>Volunteer Registration Open</strong>
+  <p>Please fill the form to join OIA Society.</p>
+</div>
+</section>
+
+<section id="leadership">
+<h2 class="section-title">Leadership</h2>
+<div class="carousel" data-group="leadership"></div>
+</section>
+
+<section id="directorates">
+<h2 class="section-title">Directorates</h2>
+<div class="carousel" data-group="directorates"></div>
+</section>
+
+<section id="pioneers">
+<h2 class="section-title">Pioneers</h2>
+<div class="carousel" data-group="pioneers"></div>
+</section>
+
+<section id="forms">
+<h2 class="section-title">Forms</h2>
+<div style="text-align:center">
+  <a class="btn"
+     href="https://docs.google.com/forms/d/e/1FAIpQLSfwd55_BpKDIZWuOIhoma8n3rCmhNxRq0ZY-OkYTpSoKUiQ1g/viewform"
+     target="_blank">
+     Volunteer Registration
+  </a>
+
+  <span class="btn" style="opacity:.6;cursor:not-allowed;">
+    Database / Analytical Form (Coming Soon)
+  </span>
+</div>
+</section>
+
+<section id="feedbacks">
+<h2 class="section-title">Public Feedback</h2>
+<div id="feedbackList"></div>
+</section>
+
+<footer>
+<p>Online Integrity & Awareness Society</p>
+</footer>
+
+<div class="feedback-btn btn" onclick="openFeedback()">Feedback</div>
+
+<div class="modal" id="feedbackModal">
+<div class="modal-content">
+<h3>Send Feedback</h3>
+<input id="fname" placeholder="Your name">
+<textarea id="fmsg" placeholder="Your message"></textarea>
+<label>
+<input type="checkbox" id="coreOnly"> Core team only
+</label>
+<br><br>
+<div class="btn" onclick="sendFeedback()">Send</div>
+</div>
+</div>
+
+<div class="overlay" id="overlay">
+<div class="profile">
+<img id="pimg">
+<h2 id="pname"></h2>
+<p id="prole"></p>
+<p id="pintro"></p>
+<div class="btn" onclick="overlay.classList.remove('open')">Close</div>
+</div>
+</div>
+
+<script>
+emailjs.init("dTuyIgPSqpHqg7u5A");
+
+const overlay=document.getElementById("overlay");
+const feedbackModal=document.getElementById("feedbackModal");
+const feedbackList=document.getElementById("feedbackList");
+
+const data={
+ leadership:[
+  {n:"Ayan Farrukh",r:"Founder",i:"ayan.jpg",d:"Founder of OIA Society"},
+],
+ directorates:[
+  {n:"Muhammad Karam Rashid",r:"Director IT",i:"Karam.png",d:"Leads technical affairs"},
+  {n:"Aimal",r:"Head of Ambassadors",i:"aimal.jpeg",d:"Leads ambassadors"},
+  {n:"Abdul Rafay",r:"Director IT",i:"rafay.jpeg",d:"Manages tech initiatives"}
+ ],
+ pioneers:[
+  {n:"Eman Anwar",r:"Founding Member",i:"eman.jpeg",d:"Early contributor"},
+  {n:"Ghous Ali Warraich",r:"Founding Member",i:"ali.jpeg",d:"Early supporter"},
+  {n:"Emaan",r:"Founding Member",i:"emaan.jpeg",d:"Early contributor"}
+ ]
+};
+
+document.querySelectorAll(".carousel").forEach(c=>{
+ let idx=0;
+ const key=c.dataset.group;
+
+ const left=document.createElement("div");
+ left.className="arrow"; left.textContent="⬅";
+ const right=document.createElement("div");
+ right.className="arrow"; right.textContent="➡";
+ const card=document.createElement("div");
+
+ c.append(left,card,right);
+
+ function render(){
+  const p=data[key][idx];
+  card.className="card";
+  card.innerHTML=`<img src="${p.i}"><h3>${p.n}</h3><p>${p.r}</p>`;
+  card.onclick=()=>openProfile(p);
+ }
+ left.onclick=()=>{idx=(idx-1+data[key].length)%data[key].length;render()}
+ right.onclick=()=>{idx=(idx+1)%data[key].length;render()}
+ render();
+});
+
+function openProfile(p){
+ overlay.classList.add("open");
+ pimg.src=p.i;
+ pname.textContent=p.n;
+ prole.textContent=p.r;
+ pintro.textContent=p.d;
+}
+
+function openFeedback(){
+ feedbackModal.style.display="flex";
+}
+
+function sendFeedback(){
+ const name=fname.value.trim();
+ const msg=fmsg.value.trim();
+ const core=coreOnly.checked;
+ if(!name||!msg) return alert("Fill all fields");
+
+ if(!core){
+  const div=document.createElement("div");
+  div.className="public-feedback";
+  div.innerHTML=`<strong>${name}</strong><p>${msg}</p>`;
+  feedbackList.prepend(div);
+ }
+
+ if(core){
+  emailjs.send("service_76vsqav","template_wglxm9z",{
+    from_name:name,
+    message:msg
+  });
+ }
+
+ fname.value="";
+ fmsg.value="";
+ coreOnly.checked=false;
+ feedbackModal.style.display="none";
+}
+</script>
+
+</body>
+</html>
+
+
+
+
