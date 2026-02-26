@@ -25,20 +25,19 @@
       color: var(--navy);
       min-height: 100vh;
       overflow-x: hidden;
-      line-height: 1.5;
     }
 
-    /* ════ HEADER ════ */
+    /* ════ HEADER (Original 68px) ════ */
     header {
       background: var(--navy);
       padding: 0 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 70px;
+      height: 68px;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 200;
       border-bottom: 2px solid var(--gold);
     }
 
@@ -57,141 +56,133 @@
     }
     .logo-text span { font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
 
-    nav { display: flex; gap: 0.2rem; }
-    nav button {
-      background: none; border: none; color: #aab4c8;
-      font-family: 'DM Sans', sans-serif; font-size: 0.75rem;
-      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.6rem 0.9rem; cursor: pointer; border-radius: 4px;
-      transition: all 0.25s; position: relative; white-space: nowrap;
-    }
-    nav button:hover { color: var(--white); }
-    nav button.active { color: var(--gold); }
-    nav button.active::after {
-      content: ''; position: absolute; bottom: 5px; left: 20%; right: 20%; height: 2px; background: var(--gold);
-    }
-
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 10px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 300;
     }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: 0.3s; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: all 0.3s; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    nav { display: flex; gap: 0.1rem; }
+    nav button {
+      background: none; border: none; color: #aab4c8;
+      font-family: 'DM Sans', sans-serif; font-size: 0.75rem;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.5rem 0.85rem; cursor: pointer; border-radius: 4px;
+      transition: all 0.25s; position: relative; white-space: nowrap;
+    }
+    nav button:hover { color: var(--white); }
+    nav button.active { color: var(--gold); }
+    nav button.active::after { content: ''; position: absolute; bottom: 2px; left: 10%; right: 10%; height: 2px; background: var(--gold); }
+
+    /* ════ MOBILE NAV (Original Style) ════ */
     .mobile-nav {
-      display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0;
-      background: var(--navy); z-index: 999; flex-direction: column; padding: 1.5rem; gap: 0.5rem;
-      overflow-y: auto;
+      display: none; position: fixed;
+      top: 68px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); z-index: 150;
+      flex-direction: column; padding: 1.5rem 1.25rem; gap: 0.4rem;
+      overflow-y: auto; border-top: 1px solid var(--border);
+      animation: slideDown 0.25s ease;
     }
     .mobile-nav.open { display: flex; }
+    @keyframes slideDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
     .mobile-nav button {
-      background: none; border: none; color: #aab4c8; font-size: 1.1rem;
-      padding: 1rem; text-align: left; border-left: 3px solid transparent;
-      text-transform: uppercase; letter-spacing: 0.1em;
+      background: none; border: none; color: #aab4c8;
+      font-family: 'DM Sans', sans-serif; font-size: 1.05rem;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.9rem 1rem; cursor: pointer; border-radius: 8px; text-align: left;
+      border-left: 3px solid transparent; transition: all 0.2s;
     }
-    .mobile-nav button.active { color: var(--gold); border-left-color: var(--gold); background: rgba(201,168,76,0.07); }
+    .mobile-nav button:hover, .mobile-nav button.active { color: var(--gold); background: rgba(201,168,76,0.07); border-left-color: var(--gold); }
 
     /* ════ HERO ════ */
     .hero {
-      background: var(--navy); padding: 5rem 1.5rem; text-align: center; position: relative;
+      background: var(--navy); padding: 3.5rem 1.5rem 3rem;
+      text-align: center; border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
     }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 300; color: var(--white); line-height: 1.1; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 8vw, 4rem); font-weight: 300; color: var(--white); line-height: 1.15; }
     .hero h1 span { color: var(--gold); font-weight: 600; }
-    .hero-sub { margin-top: 1.2rem; color: #8a9ab5; font-size: clamp(0.9rem, 3vw, 1.1rem); max-width: 800px; margin-left: auto; margin-right: auto; }
+    .hero-sub { margin-top: 0.75rem; color: #8a9ab5; font-size: clamp(0.82rem, 3vw, 1rem); letter-spacing: 0.04em; }
 
-    /* ════ SECTIONS ════ */
-    .tab-panel { display: none; animation: fadeIn 0.4s ease-in-out; }
+    /* ════ TABS ════ */
+    .tab-panel { display: none; animation: fadeUp 0.35s ease; }
     .tab-panel.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
 
-    .section { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
-    .section-heading { text-align: center; margin-bottom: 3.5rem; }
-    .tag { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
-    .section-heading h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 400; color: var(--navy); }
-    .divider { width: 60px; height: 2px; background: var(--gold); margin: 1.2rem auto; }
+    .section { max-width: 1100px; margin: 0 auto; padding: 3rem 1.25rem; }
+    .section-heading { text-align: center; margin-bottom: 2.5rem; }
+    .section-heading .tag { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.6rem; }
+    .section-heading h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 400; color: var(--navy); }
+    .divider { width: 50px; height: 2px; background: var(--gold); margin: 0.9rem auto 0; }
 
-    /* ════ SMART GRID ════ */
-    .grid-layout {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 2rem;
-    }
+    /* ════ MISSION & ABOUT ════ */
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .mission-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 2rem 1.5rem; position: relative; }
+    .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-box { background: var(--navy); border-radius: 10px; padding: 1.25rem; text-align: center; }
+    .stat-box .num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); font-weight: 600; display: block; }
+    .stat-box span { font-size: 0.72rem; color: #aab4c8; text-transform: uppercase; }
 
-    /* ════ CARD & THE "FULL IMAGE" FIX ════ */
-    .oia-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-    }
-    .oia-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(10,22,40,0.12); }
+    /* ════ NOTICES ════ */
+    .notice-list { display: flex; flex-direction: column; gap: 1rem; }
+    .notice-item { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 8px; padding: 1.4rem 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .notice-link { background: var(--navy); color: var(--gold); text-decoration: none; padding: 0.6rem 1.1rem; border-radius: 6px; font-size: 0.78rem; text-transform: uppercase; }
 
-    .card-image-box {
-      width: 100%;
-      height: 280px; /* Consistent height for the card top */
-      background: #0d1b2e; /* Navy background to frame images nicely */
+    /* ════ GRIDS (Original Column Counts) ════ */
+    .dir-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .pioneers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+    .dir-card, .team-card, .pioneer-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.3s; }
+    
+    /* ════ THE IMAGE FIX (FIT TO SIZE) ════ */
+    .dir-img, .team-avatar, .pioneer-avatar { 
+      width: 100%; 
+      background: #0a1628; /* Navy frame for images */
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px; /* Small cushion so images don't touch edges */
+      padding: 5px; /* Cushion around photo */
+    }
+    .dir-img { height: 200px; }
+    .team-avatar, .pioneer-avatar { height: 160px; }
+
+    .dir-img img, .team-avatar img, .pioneer-avatar img { 
+      max-width: 100%; 
+      max-height: 100%; 
+      object-fit: contain; /* THE FIX: Whole photo is shown, no cutting */
     }
 
-    .card-image-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain; /* THE KEY FIX: Shows the FULL picture, no cropping */
-      display: block;
-    }
-
-    .card-content { padding: 1.5rem; flex-grow: 1; }
-    .card-content .role { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: block; font-weight: 600; }
-    .card-content h3, .card-content h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 0.6rem; }
-    .card-content p { color: #4a5568; line-height: 1.7; font-size: 0.9rem; }
-
-    /* ════ MISSION & ABOUT ════ */
-    .mission-card { padding: 2.5rem 1.5rem; border-top: 4px solid var(--gold); }
-    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .stat-box { background: var(--navy); color: var(--white); padding: 1.5rem; border-radius: 10px; text-align: center; }
-    .stat-box .num { font-size: 2.2rem; color: var(--gold); font-family: 'Cormorant Garamond', serif; display: block; margin-bottom: 5px; }
-    .stat-box span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #aab4c8; }
-
-    /* ════ NOTICES ════ */
-    .notice-card {
-      background: var(--white); border-left: 5px solid var(--gold);
-      padding: 2.5rem; border-radius: 8px; margin-bottom: 1.5rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;
-    }
-    .notice-link {
-      background: var(--navy); color: var(--gold); text-decoration: none;
-      padding: 0.8rem 1.6rem; border-radius: 6px; font-weight: 600; font-size: 0.8rem;
-      white-space: nowrap; transition: 0.3s; border: 1px solid var(--gold);
-    }
-    .notice-link:hover { background: var(--gold); color: var(--navy); }
+    .dir-body, .team-info, .pioneer-info { padding: 1.4rem; }
+    .role, .pos, .cohort { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    h3, h4 { font-family: 'Cormorant Garamond', serif; color: var(--navy); }
 
     /* ════ PIONEERS INTRO ════ */
-    .pioneer-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
-    .pioneer-text-box { background: var(--white); padding: 2.5rem; border: 1px solid var(--border); border-radius: 12px; position: relative; }
-    .quote-icon { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: rgba(201,168,76,0.1); position: absolute; top: 10px; right: 20px; }
+    .pioneers-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
+    .pioneer-para { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 2rem 1.75rem; position: relative; }
 
     /* ════ FOOTER ════ */
-    footer { background: var(--navy); color: #8a9ab5; text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+    footer { background: var(--navy); color: #8a9ab5; text-align: center; padding: 1.75rem 1.25rem; font-size: 0.78rem; border-top: 1px solid rgba(201,168,76,0.2); }
     footer span { color: var(--gold); }
 
-    /* ════ RESPONSIVE QUERIES ════ */
-    @media (max-width: 950px) {
-      nav { display: none; }
+    /* ════ ORIGINAL RESPONSIVE BREAKPOINTS ════ */
+    @media (max-width: 900px) {
+      nav { display: none; } 
       .hamburger { display: flex; }
-      .about-layout, .pioneer-intro-grid { grid-template-columns: 1fr; }
+      .dir-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-body, .pioneers-intro-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 480px) {
-      .notice-card { padding: 1.5rem; text-align: center; justify-content: center; }
-      .stat-grid { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .pioneers-grid { grid-template-columns: repeat(2, 1fr); }
+      .mission-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 380px) {
+      .dir-grid, .team-grid, .pioneers-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -223,19 +214,19 @@
 </div>
 
 <div class="hero">
-  <span class="tag" style="color:var(--gold)">Welcome to</span>
-  <h1>Online <span>Integrity & Awareness</span> Society</h1>
+  <p style="font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">Welcome to</p>
+  <h1>Online <span>Integrity &amp; Awareness</span> Society</h1>
   <p class="hero-sub">Championing digital integrity — fostering a safer, more aware online world</p>
 </div>
 
 <div id="mission" class="tab-panel active">
   <div class="section">
-    <div class="section-heading"><span class="tag">Our Purpose</span><h2>Mission & Vision</h2><div class="divider"></div></div>
-    <div class="grid-layout">
-      <div class="oia-card mission-card"><h3>🛡️ Our Mission</h3><p>OIA is committed to cultivating a culture of digital responsibility, ethical online conduct, and critical awareness. We empower individuals to navigate the digital world with integrity, combating misinformation, cyberbullying, and online harm through education and community engagement.</p></div>
-      <div class="oia-card mission-card"><h3>🔭 Our Vision</h3><p>We envision a digital landscape where every user — either student, professional, or citizen — interacts online with honesty, empathy, and accountability. A world where awareness replaces ignorance and integrity guides every click, share, and conversation.</p></div>
-      <div class="oia-card mission-card"><h3>⚖️ Core Values</h3><p>Integrity, transparency, inclusivity, and awareness are the pillars of OIA. We believe that a well-informed digital community is the strongest defence against online manipulation, hate speech, and digital exploitation.</p></div>
-      <div class="oia-card mission-card"><h3>🎯 Strategic Goals</h3><p>To deliver impactful digital literacy programs, raise awareness about online rights and responsibilities, build safe online communities, and advocate for ethical standards across digital platforms nationally and internationally.</p></div>
+    <div class="section-heading"><span class="tag">Our Purpose</span><h2>Mission &amp; Vision</h2><div class="divider"></div></div>
+    <div class="mission-grid">
+      <div class="mission-card"><h3>🛡️ Our Mission</h3><p>OIA is committed to cultivating a culture of digital responsibility, ethical online conduct, and critical awareness. We empower individuals to navigate the digital world with integrity.</p></div>
+      <div class="mission-card"><h3>🔭 Our Vision</h3><p>We envision a digital landscape where every user interacts online with honesty, empathy, and accountability.</p></div>
+      <div class="mission-card"><h3>⚖️ Core Values</h3><p>Integrity, transparency, inclusivity, and awareness are the pillars of OIA.</p></div>
+      <div class="mission-card"><h3>🎯 Strategic Goals</h3><p>To deliver impactful digital literacy programs and advocate for ethical standards across digital platforms.</p></div>
     </div>
   </div>
 </div>
@@ -243,17 +234,16 @@
 <div id="about" class="tab-panel">
   <div class="section">
     <div class="section-heading"><span class="tag">Who We Are</span><h2>About OIA</h2><div class="divider"></div></div>
-    <div class="about-layout">
+    <div class="about-body">
       <div class="about-text">
-        <p>The Online Integrity and Awareness Society (OIA) is a dedicated platform committed to promoting ethical digital behaviour, combating misinformation, and fostering a culture of online responsibility. Founded by a passionate group of digital advocates, OIA has grown into a vibrant community of change-makers.</p><br>
-        <p>We conduct awareness campaigns, workshops, and training sessions that equip individuals — students, professionals, and the general public — with the tools to identify, respond to, and prevent online harm. From cyberbullying and fake news to data privacy and digital rights, OIA covers the full spectrum of online integrity.</p><br>
-        <p>OIA also collaborates with educational institutions, civil society organisations, and tech communities to amplify its impact, ensuring that digital awareness reaches every corner of our society and urges to make every individual strong and independent by teaching life-making skills.</p>
+        <p>The Online Integrity and Awareness Society (OIA) is a dedicated platform committed to promoting ethical digital behaviour and fostering a culture of online responsibility.</p>
+        <p>We conduct awareness campaigns, workshops, and training sessions that equip individuals with the tools to identify, respond to, and prevent online harm.</p>
       </div>
-      <div class="stat-grid">
-        <div class="stat-box"><strong class="num">80+</strong><span>Awareness Sessions</span></div>
-        <div class="stat-box"><strong class="num">12K+</strong><span>Community Members</span></div>
-        <div class="stat-box"><strong class="num">50+</strong><span>Campaigns Run</span></div>
-        <div class="stat-box"><strong class="num">5</strong><span>Years of Impact</span></div>
+      <div class="about-stats">
+        <div class="stat-box"><strong class="num">80+</strong><span>Sessions</span></div>
+        <div class="stat-box"><strong class="num">12K+</strong><span>Members</span></div>
+        <div class="stat-box"><strong class="num">50+</strong><span>Campaigns</span></div>
+        <div class="stat-box"><strong class="num">5</strong><span>Years</span></div>
       </div>
     </div>
   </div>
@@ -261,19 +251,21 @@
 
 <div id="notices" class="tab-panel">
   <div class="section">
-    <div class="section-heading"><span class="tag">Updates</span><h2>Official Notices</h2><div class="divider"></div></div>
-    <div class="notice-card">
-      <div class="notice-info">
-        <h4>Digital Integrity Workshop 2026 — Coming Soon</h4>
-        <p>OIA is hosting its flagship Digital Integrity Workshop 2026 along with 3 new fellowships: Cipher, Podium, and Equilibrium. Covering misinformation, cyberbullying, online privacy, entrepreneurship, and public speaking.</p>
+    <div class="section-heading"><span class="tag">Stay Informed</span><h2>Official Notices</h2><div class="divider"></div></div>
+    <div class="notice-list">
+      <div class="notice-item">
+        <div style="flex:1">
+          <h4>Digital Integrity Workshop 2026 — Coming Soon</h4>
+          <p>OIA is hosting its flagship Workshop along with 3 new fellowships: Cipher, Podium, and Equilibrium. Registration links coming soon.</p>
+        </div>
       </div>
-    </div>
-    <div class="notice-card">
-      <div class="notice-info">
-        <h4>Online Awareness Campaign — Call for Volunteers</h4>
-        <p>Become an OIA volunteer. Benefits include management fees, commissions, certificates, and recommendation letters. Join the movement today.</p>
+      <div class="notice-item">
+        <div style="flex:1">
+          <h4>Online Awareness Campaign — Call for Volunteers</h4>
+          <p>OIA is calling for passionate volunteers. Rewards include certificates, recommendation letters, and commissions.</p>
+        </div>
+        <a href="https://forms.gle/rByPucLkg2rAPpCP8" target="_blank" class="notice-link">↗ Open Link</a>
       </div>
-      <a href="https://forms.gle/rByPucLkg2rAPpCP8" target="_blank" class="notice-link">↗ Apply Now</a>
     </div>
   </div>
 </div>
@@ -281,23 +273,11 @@
 <div id="directorate" class="tab-panel">
   <div class="section">
     <div class="section-heading"><span class="tag">Leadership</span><h2>Our Directorate</h2><div class="divider"></div></div>
-    <div class="grid-layout">
-      <div class="oia-card">
-        <div class="card-image-box"><img src="ayan.jpeg" alt="Muhammad Ayan Farrukh"></div>
-        <div class="card-content"><span class="role">Founder</span><h3>Muhammad Ayan Farrukh</h3><p>Developed the strategic vision and long-term roadmap, transforming OIA from an idea into a structured initiative.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="Musa.jpeg" alt="Muhammad Musa Chohan"></div>
-        <div class="card-content"><span class="role">President</span><h3>Muhammad Musa Chohan</h3><p>Provides executive leadership and strategic oversight across all OIA departments.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="ayesha.jpeg" alt="Ayesha Saifullah"></div>
-        <div class="card-content"><span class="role">Vice President</span><h3>Ayesha Saifullah</h3><p>Serves as chief operational strategist, translating OIA's vision into actionable, measurable initiatives.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="areeb.jpeg" alt="Areeb Rehman"></div>
-        <div class="card-content"><span class="role">Chief of Staff</span><h3>Areeb Rehman</h3><p>Acts as a key advisor to the Founder and President, supporting decision-making and operational efficiency.</p></div>
-      </div>
+    <div class="dir-grid">
+      <div class="dir-card"><div class="dir-img"><img src="ayan.jpeg" alt="Ayan"></div><div class="dir-body"><div class="role">Founder</div><h3>Muhammad Ayan Farrukh</h3><p>Developed the strategic vision and roadmap.</p></div></div>
+      <div class="dir-card"><div class="dir-img"><img src="Musa.jpeg" alt="Musa"></div><div class="dir-body"><div class="role">President</div><h3>Muhammad Musa Chohan</h3><p>Provides executive leadership and oversight.</p></div></div>
+      <div class="dir-card"><div class="dir-img"><img src="ayesha.jpeg" alt="Ayesha"></div><div class="dir-body"><div class="role">Vice President</div><h3>Ayesha Saifullah</h3><p>Serves as chief operational strategist.</p></div></div>
+      <div class="dir-card"><div class="dir-img"><img src="areeb.jpeg" alt="Areeb"></div><div class="dir-body"><div class="role">Chief of Staff</div><h3>Areeb Rehman</h3><p>Key advisor to the leadership team.</p></div></div>
     </div>
   </div>
 </div>
@@ -305,23 +285,11 @@
 <div id="team" class="tab-panel">
   <div class="section">
     <div class="section-heading"><span class="tag">The People</span><h2>Core Team</h2><div class="divider"></div></div>
-    <div class="grid-layout">
-      <div class="oia-card">
-        <div class="card-image-box"><img src="rafay.jpeg" alt="Abdul Rafay"></div>
-        <div class="card-content"><span class="role">Voice of Project</span><h4>Abdul Rafay</h4><p>Transforms complex digital ethics concepts into accessible communication for youth.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="aimal.jpeg" alt="Aimal Azhar"></div>
-        <div class="card-content"><span class="role">Ambassador Head</span><h4>Aimal Azhar</h4><p>Oversees training, performance tracking, and campaign execution nationwide.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="rameen.jpeg" alt="Rameen Farhan"></div>
-        <div class="card-content"><span class="role">Ambassador Head</span><h4>Rameen Farhan</h4><p>Expands OIA's presence across schools, colleges, and communities.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="Karam.png" alt="Muhammad Karam Rashid"></div>
-        <div class="card-content"><span class="role">IT & Technical Affairs</span><h4>Muhammad Karam Rashid</h4><p>Manages digital systems and technical frameworks for outreach.</p></div>
-      </div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar"><img src="rafay.jpeg" alt="Rafay"></div><div class="team-info"><h4>Abdul Rafay</h4><div class="pos">Voice of Project</div></div></div>
+      <div class="team-card"><div class="team-avatar"><img src="aimal.jpeg" alt="Aimal"></div><div class="team-info"><h4>Aimal Azhar</h4><div class="pos">Ambassador Head</div></div></div>
+      <div class="team-card"><div class="team-avatar"><img src="rameen.jpeg" alt="Rameen"></div><div class="team-info"><h4>Rameen Farhan</h4><div class="pos">Ambassador Head</div></div></div>
+      <div class="team-card"><div class="team-avatar"><img src="Karam.png" alt="Karam"></div><div class="team-info"><h4>Muhammad Karam Rashid</h4><div class="pos">IT Affairs</div></div></div>
     </div>
   </div>
 </div>
@@ -329,68 +297,33 @@
 <div id="pioneers" class="tab-panel">
   <div class="section">
     <div class="section-heading"><span class="tag">Legacy</span><h2>Our Pioneers</h2><div class="divider"></div></div>
-    
-    <div class="pioneer-intro-grid">
-      <div class="pioneer-text-box">
-        <div class="quote-icon">"</div>
-        <span class="tag">A Tribute</span>
-        <h3>To Those Who Sparked the Movement</h3>
-        <p>Our pioneers are the brave individuals who first raised their voices against online harm when it was still an unfamiliar conversation. Their sacrifices created a legacy that continues to protect and empower.</p>
-      </div>
-      <div class="pioneer-text-box">
-        <div class="quote-icon">"</div>
-        <span class="tag">From Our Pioneers</span>
-        <h3>Words Carried Forward</h3>
-        <p>From our pioneers comes a simple message: the internet is a reflection of us — and we have the power to make it better. Integrity must guide every choice we make online.</p>
-      </div>
+    <div class="pioneers-intro-grid">
+      <div class="pioneer-para"><h3>Tribute to Pioneers</h3><p>Our pioneers are the individuals who first raised their voices against online harm.</p></div>
+      <div class="pioneer-para"><h3>Message Carried Forward</h3><p>The internet is a reflection of us — and we have the power to make it better.</p></div>
     </div>
-
-    <div class="grid-layout">
-      <div class="oia-card">
-        <div class="card-image-box"><img src="emaan.jpeg" alt="Eman Hafeez"></div>
-        <div class="card-content"><span class="role">Co-Founder</span><h4>Eman Hafeez</h4><p>Launched OIA's first awareness campaign, reaching over 500 students.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="ibraheem.jpeg" alt="Ibrahim Waheed"></div>
-        <div class="card-content"><span class="role">Publications</span><h4>Ibrahim Waheed</h4><p>Established OIA's foundational publication standards and editorial integrity.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="Shahid.jpeg" alt="Shahroz Shahid"></div>
-        <div class="card-content"><span class="role">Activity Head</span><h4>Shahroz Shahid</h4><p>Designed and executed OIA's interactive awareness workshops.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="eman.jpeg" alt="Eman Anwar"></div>
-        <div class="card-content"><span class="role">Activity Head</span><h4>Eman Anwar</h4><p>Coordinated cross-departmental initiatives to deliver structured campaigns.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="ali.jpeg" alt="Ghous Ali Warraich"></div>
-        <div class="card-content"><span class="role">Media Head</span><h4>Ghous Ali Warraich</h4><p>Developed digital storytelling strategy and multimedia awareness content.</p></div>
-      </div>
-      <div class="oia-card">
-        <div class="card-image-box"><img src="hiba.jpeg" alt="Hiba Inam"></div>
-        <div class="card-content"><span class="role">Public Relations</span><h4>Hiba Inam</h4><p>Established OIA's peer mentorship network connecting digital champions.</p></div>
-      </div>
+    <div class="pioneers-grid">
+      <div class="pioneer-card"><div class="pioneer-avatar"><img src="emaan.jpeg" alt="Eman"></div><div class="pioneer-info"><h4>Eman Hafeez</h4><div class="cohort">Co-Founder</div></div></div>
+      <div class="pioneer-card"><div class="pioneer-avatar"><img src="ibraheem.jpeg" alt="Ibraheem"></div><div class="pioneer-info"><h4>Ibrahim Waheed</h4><div class="cohort">Publications</div></div></div>
+      <div class="pioneer-card"><div class="pioneer-avatar"><img src="Shahid.jpeg" alt="Shahroz"></div><div class="pioneer-info"><h4>Shahroz Shahid</h4><div class="cohort">Activity Head</div></div></div>
+      <div class="pioneer-card"><div class="pioneer-avatar"><img src="eman.jpeg" alt="Eman"></div><div class="pioneer-info"><h4>Eman Anwar</h4><div class="cohort">Activity Head</div></div></div>
+      <div class="pioneer-card"><div class="pioneer-avatar"><img src="ali.jpeg" alt="Ali"></div><div class="pioneer-info"><h4>Ghous Ali Warraich</h4><div class="cohort">Media Head</div></div></div>
+      <div class="pioneer-card"><div class="pioneer-avatar"><img src="hiba.jpeg" alt="Hiba"></div><div class="pioneer-info"><h4>Hiba Inam</h4><div class="cohort">Public Relations</div></div></div>
     </div>
   </div>
 </div>
 
-<footer>
-  © 2026 <span>Online Integrity and Awareness Society (OIA)</span><br>
-  Championing a safer digital world. All Rights Reserved.
-</footer>
+<footer>© 2026 <span>Online Integrity and Awareness Society (OIA)</span><br>All Rights Reserved</footer>
 
 <script>
   function showTab(id, clickedBtn) {
-    // Hide all panels
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    // Show selected panel
     document.getElementById(id).classList.add('active');
     
-    // Update button states
-    const btnText = clickedBtn.innerText;
-    document.querySelectorAll('nav button, .mobile-nav button').forEach(btn => {
-      btn.classList.remove('active');
-      if(btn.innerText === btnText) btn.classList.add('active');
+    // Sync active state for buttons
+    const label = clickedBtn.innerText;
+    document.querySelectorAll('#desktopNav button, #mobileNav button').forEach(b => {
+      b.classList.remove('active');
+      if(b.innerText === label) b.classList.add('active');
     });
 
     closeMobileMenu();
