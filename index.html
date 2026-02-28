@@ -233,6 +233,30 @@
   height: 100%;
   object-fit: contain;
 }
+/* FIX CARD DESIGN */
+.dir-card,
+.team-card,
+.pioneer-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dir-card:hover,
+.team-card:hover,
+.pioneer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(10,22,40,0.10);
+}
+
+.dir-body,
+.team-info,
+.pioneer-info {
+  padding: 1.2rem;
+}   
     /* ════ FOOTER ════ */
     footer { background: var(--navy); color: #8a9ab5; text-align: center; padding: 1.75rem 1.25rem; font-size: 0.78rem; letter-spacing: 0.04em; border-top: 1px solid rgba(201,168,76,0.2); line-height: 1.8; }
     footer span { color: var(--gold); }
@@ -463,6 +487,7 @@
 
 </body>
 </html>
+
 
 
 
