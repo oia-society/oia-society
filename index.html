@@ -168,95 +168,55 @@
     }
     .notice-link:hover { background: #1a2d4e; }
 
-  /* ════ DIRECTORATE ════ */
-.dir-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-}
+    /* ════ CARD WRAPPERS ════ */
+    .dir-grid, .team-grid, .pioneers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
 
-.dir-img {
-  width: 100%;
-  aspect-ratio: 1 / 1;   /* makes it square */
-  background: #0a1628;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .dir-card, .team-card, .pioneer-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
 
-.dir-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+    .dir-card:hover, .team-card:hover, .pioneer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(10,22,40,0.11);
+    }
 
-  /* ════ CORE TEAM ════ */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
+    /* ════ IMAGE STYLES (OG DESIGN) ════ */
+    .dir-img, .team-avatar, .pioneer-avatar {
+      width: 100%;
+      height: 260px; /* OG Fixed Height */
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-.team-avatar {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: #132038;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .dir-img img, .team-avatar img, .pioneer-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Keeps design looking premium like OG */
+      object-position: center top;
+    }
 
-.team-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+    .dir-body, .team-info, .pioneer-info { padding: 1.4rem; }
 
-  /* ════ PIONEERS ════ */
-.pioneers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.2rem;
-}
+    /* ════ PIONEERS SPECIFIC (OG DESIGN) ════ */
+    .pioneers-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
+    .pioneer-para { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 2rem 1.75rem; position: relative; overflow: hidden; text-align: left;}
+    .pioneer-para .label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: block; }
+    .pioneer-para h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--navy); margin-bottom: 0.85rem; }
+    .pioneer-para p { color: #4a5568; line-height: 1.85; font-size: 0.9rem; }
+    .pioneer-para .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height: 1; color: rgba(201,168,76,0.12); position: absolute; top: 0.5rem; right: 1rem; pointer-events: none; }
 
-.pioneer-avatar {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: var(--navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pioneer-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-/* RESTORE ORIGINAL CARD DESIGN */
-.dir-card,
-.team-card,
-.pioneer-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dir-card:hover,
-.team-card:hover,
-.pioneer-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(10,22,40,0.10);
-}
-
-.dir-body,
-.team-info,
-.pioneer-info {
-  padding: 1.2rem;
-}
     /* ════ FOOTER ════ */
     footer { background: var(--navy); color: #8a9ab5; text-align: center; padding: 1.75rem 1.25rem; font-size: 0.78rem; letter-spacing: 0.04em; border-top: 1px solid rgba(201,168,76,0.2); line-height: 1.8; }
     footer span { color: var(--gold); }
@@ -265,7 +225,6 @@
     @media (max-width: 900px) {
       nav { display: none; }
       .hamburger { display: flex; }
-      .team-grid, .dir-grid { grid-template-columns: repeat(2, 1fr); }
       .about-body { grid-template-columns: 1fr; }
       .pioneers-intro-grid { grid-template-columns: 1fr; gap: 1rem; }
     }
@@ -273,8 +232,8 @@
       header { padding: 0 1rem; height: 60px; }
       .logo-text span { display: none; }
       .mobile-nav { top: 60px; }
-      .mission-grid, .dir-grid, .pioneers-grid { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .dir-grid, .team-grid, .pioneers-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -348,21 +307,18 @@
     <div class="section">
       <div class="section-heading"><span class="tag">Stay Informed</span><h2>Official Notices</h2><div class="divider"></div></div>
       <div class="notice-list">
-       <div class="notice-item">
+        <div class="notice-item">
           <div class="notice-info">
-           <h4>Contact Us</h4>
-           <p>Number:+92 339 0005071</br>
-            ·Email:oiasociety1@gmail.com
-        </div>
-          </div>     
+            <h4>Contact Us</h4>
+            <p>Number: +92 339 0005071<br>Email: oiasociety1@gmail.com</p>
+          </div>
+        </div>      
         <div class="notice-item">
           <div class="notice-info">
             <h4>Digital Integrity Workshop 2025 — Coming Soon</h4>
-          <p>OIA is hosting its flagship Digital Integrity Workshop 2026 along with 3 new fellowships:<br>
-          · Cipher<br>
-          · Podium<br>
-          · Equilibrium<br><br>
-          The event will cover misinformation, cyberbullying, online privacy, psychological sessions, entrepreneurship movements, public speaking sessions and responsible social media use. All students and professionals are welcome to register. Link will be shared soon.</p>
+            <p>OIA is hosting its flagship Digital Integrity Workshop 2026 along with 3 new fellowships:<br>
+            · Cipher<br>· Podium<br>· Equilibrium<br><br>
+            The event will cover misinformation, cyberbullying, online privacy, psychological sessions, entrepreneurship movements, public speaking sessions and responsible social media use.</p>
           </div>
         </div>
         <div class="notice-item">
@@ -380,10 +336,10 @@
     <div class="section">
       <div class="section-heading"><span class="tag">Leadership</span><h2>Our Directorate</h2><div class="divider"></div></div>
       <div class="dir-grid">
-        <div class="dir-card"><div class="dir-img"><img src="ayan.jpeg"></div><div class="dir-body"><div class="role">Founder</div><h3>Muhammad Ayan Farrukh</h3><p>Developed the strategic vision and long-term roadmap, transforming OIA from an idea into a structured and purpose driven initiative..</p></div></div>
-        <div class="dir-card"><div class="dir-img"><img src="Musa.jpeg"></div><div class="dir-body"><div class="role">President</div><h3>Muhammad Musa Chohan</h3><p>Provides executive leadership and strategic oversight across all OIA departments, ensuring alignment with the organization's mission and vision.</p></div></div>
-        <div class="dir-card"><div class="dir-img"><img src="ayesha.jpeg"></div><div class="dir-body"><div class="role">Vice President</div><h3>Ayesha Saifullah</h3><p>Provides executive leadership and strategic oversight across all OIA departments, ensuring alignment with the organization's mission and vision.</p></div></div>
-        <div class="dir-card"><div class="dir-img"><img src="areeb.jpeg"></div><div class="dir-body"><div class="role">Chief of Staff</div><h3>Areeb Rehman</h3><p>Acts as a key advisor to the Founder and President, supporting decision making and operational efficiency.</p></div></div>
+        <div class="dir-card"><div class="dir-img"><img src="ayan.jpeg"></div><div class="dir-body"><div class="role">Founder</div><h3>Muhammad Ayan Farrukh</h3><p>Developed the strategic vision and long-term roadmap, transforming OIA from an idea into a structured and purpose driven initiative.</p></div></div>
+        <div class="dir-card"><div class="dir-img"><img src="Musa.jpeg"></div><div class="dir-body"><div class="role">President</div><h3>Muhammad Musa Chohan</h3><p>Provides executive leadership and strategic oversight across all OIA departments, ensuring alignment with mission and vision.</p></div></div>
+        <div class="dir-card"><div class="dir-img"><img src="ayesha.jpeg"></div><div class="dir-body"><div class="role">Vice President</div><h3>Ayesha Saifullah</h3><p>Ensures alignment with organization mission and handles executive coordination across departments.</p></div></div>
+        <div class="dir-card"><div class="dir-img"><img src="areeb.jpeg"></div><div class="dir-body"><div class="role">Chief of Staff</div><h3>Areeb Rehman</h3><p>Acts as a key advisor to leadership, supporting decision making and operational efficiency.</p></div></div>
       </div>
     </div>
   </div>
@@ -392,10 +348,10 @@
     <div class="section">
       <div class="section-heading"><span class="tag">The People Behind OIA</span><h2>Core Team</h2><div class="divider"></div></div>
       <div class="team-grid">
-        <div class="team-card"><div class="team-avatar"><img src="rafay.jpeg"></div><div class="team-info"><h4>Abdul Rafay</h4><div class="pos">Voice of Project</div><p>Transforms complex digital ethics concepts into accessible, impactful communication for youth audiences.</p></div></div>
-        <div class="team-card"><div class="team-avatar"><img src="aimal.jpeg"></div><div class="team-info"><h4>Aimal Azhar</h4><div class="pos">Ambassador Head</div><p>Oversees ambassador training, performance tracking, and campaign execution to maintain consistent impact nationwide.</p></div></div>
-        <div class="team-card"><div class="team-avatar"><img src="rameen.jpeg"></div><div class="team-info"><h4>Rameen Farhan</h4><div class="pos">Ambassador Head</div><p>Leads and manages OIA's ambassador network, expanding the organization's presence across schools, colleges, and communities.</p></div></div>
-        <div class="team-card"><div class="team-avatar"><img src="Karam.png"></div><div class="team-info"><h4>Muhammad Karam Rashid</h4><div class="pos">IT &amp; Technical Affairs</div><p>Develops and manages the organization's website, digital systems, and technical frameworks to support publications and outreach initiatives.</p></div></div>
+        <div class="team-card"><div class="team-avatar"><img src="rafay.jpeg"></div><div class="team-info"><h4>Abdul Rafay</h4><div class="pos">Voice of Project</div><p>Transforms complex digital ethics concepts into accessible communication for youth.</p></div></div>
+        <div class="team-card"><div class="team-avatar"><img src="aimal.jpeg"></div><div class="team-info"><h4>Aimal Azhar</h4><div class="pos">Ambassador Head</div><p>Oversees ambassador training and campaign execution nationwide.</p></div></div>
+        <div class="team-card"><div class="team-avatar"><img src="rameen.jpeg"></div><div class="team-info"><h4>Rameen Farhan</h4><div class="pos">Ambassador Head</div><p>Leads and manages OIA's ambassador network across schools and colleges.</p></div></div>
+        <div class="team-card"><div class="team-avatar"><img src="Karam.png"></div><div class="team-info"><h4>Muhammad Karam Rashid</h4><div class="pos">IT &amp; Technical Affairs</div><p>Manages the organization's website and digital systems.</p></div></div>
       </div>
     </div>
   </div>
@@ -403,39 +359,19 @@
   <div id="pioneers" class="tab-panel">
     <div class="section">
       <div class="section-heading"><span class="tag">Legacy &amp; Inspiration</span><h2>Our Pioneers</h2><div class="divider"></div></div>
-      
       <div class="pioneers-intro-grid">
-        <div class="pioneer-para"><div class="quote-mark">"</div><span class="label">To Our Pioneers</span><h3>A Tribute to Those Who Sparked the Movement</h3><p>Our pioneers are the brave individuals who first raised their voices against online harm when it was still an unfamiliar conversation. They saw the dangers of an unaware digital generation long before it became a mainstream concern — and they chose to act. They built OIA from the ground up, channelling their passion for digital ethics into a society that now touches thousands of lives. Their sacrifices of time, energy, and comfort have created a legacy that continues to protect, educate, and empower. We salute their courage, their foresight, and their unwavering belief that a more honest internet is possible.</p></div>
-        <div class="pioneer-para"><div class="quote-mark">"</div><span class="label">From Our Pioneers</span><h3>Words Carried Forward by Those Who Built This</h3><p>From our pioneers comes a simple but powerful message: the internet is a reflection of us and we have the power to make it better. They remind us that every post, every share, and every comment is a choice and that integrity must guide those choices. They urge the next generation of OIA members to stay curious, stay critical, and never let fear or indifference silence the truth. Digital awareness is not a one-time lesson; it is a lifelong practice. Our pioneers lived that practice every day, and they ask us to carry it forward with the same conviction and care that defined their journey.</p></div>
+        <div class="pioneer-para"><div class="quote-mark">"</div><span class="label">To Our Pioneers</span><h3>A Tribute to Those Who Sparked the Movement</h3><p>Our pioneers are the brave individuals who first raised their voices against online harm when it was still an unfamiliar conversation. They built OIA from the ground up, channelling their passion for digital ethics into a society that now touches thousands of lives.</p></div>
+        <div class="pioneer-para"><div class="quote-mark">"</div><span class="label">From Our Pioneers</span><h3>Words Carried Forward by Those Who Built This</h3><p>From our pioneers comes a simple but powerful message: the internet is a reflection of us and we have the power to make it better. They urge the next generation of OIA members to stay curious and stay critical.</p></div>
       </div>
 
       <div class="section-heading" style="margin-bottom:1.75rem;"><span class="tag">Pioneer Members</span><h2 style="font-size:clamp(1.5rem,4vw,2rem);">Meet the Six Pillars</h2><div class="divider"></div></div>
-      
       <div class="pioneers-grid">
-        <div class="pioneer-card">
-          <div class="pioneer-avatar"><img src="emaan.jpeg" alt="Eman Hafeez"></div>
-          <div class="pioneer-info"><h4>Eman Hafeez</h4><div class="cohort">Co Founder</div><p>Co-founded OIA and launched its first awareness campaign, reaching over 500 students in the inaugural semester.</p></div>
-        </div>
-        <div class="pioneer-card">
-          <div class="pioneer-avatar"><img src="ibraheem.jpeg" alt="Ibrahim Waheed"></div>
-          <div class="pioneer-info"><h4>Ibrahim Waheed</h4><div class="cohort">Publications</div><p>Established OIA's foundational publication standards, shaping the tone, editorial integrity, and structured framework for all official journals and awareness content.</p></div>
-        </div>
-        <div class="pioneer-card">
-          <div class="pioneer-avatar"><img src="Shahid.jpeg" alt="Shahroz Shahid"></div>
-          <div class="pioneer-info"><h4>Shahroz Shahid</h4><div class="cohort">Activity Head</div><p>Designed and executed OIA's interactive awareness workshops, engaging students in meaningful discussions on digital responsibility and emotional safety.</p></div>
-        </div>
-        <div class="pioneer-card">
-          <div class="pioneer-avatar"><img src="eman.jpeg" alt="Eman Anwar"></div>
-          <div class="pioneer-info"><h4>Eman Anwar</h4><div class="cohort">Activity Head</div><p>Coordinated cross-departmental initiatives to deliver structured campaigns that increased youth participation and institutional collaboration.</p></div>
-        </div>
-        <div class="pioneer-card">
-          <div class="pioneer-avatar"><img src="ali.jpeg" alt="Ghous Ali Warraich"></div>
-          <div class="pioneer-info"><h4>Ghous Ali Warraich</h4><div class="cohort">Media Head</div><p>Developed OIA's digital storytelling strategy, crafting visual and multimedia content that amplified awareness on cyber ethics and emotional well being.</p></div>
-        </div>
-        <div class="pioneer-card">
-          <div class="pioneer-avatar"><img src="hiba.jpeg" alt="Hiba Rubani"></div>
-          <div class="pioneer-info"><h4>Hiba Rubani</h4><div class="cohort">Director Public Relationships</div><p>Established OIA's peer mentorship network, connecting digital awareness champions with newcomers across multiple institutions.</p></div>
-        </div>
+        <div class="pioneer-card"><div class="pioneer-avatar"><img src="emaan.jpeg"></div><div class="pioneer-info"><h4>Eman Hafeez</h4><div class="cohort">Co Founder</div><p>Co-founded OIA and launched its first awareness campaign reaching 500+ students.</p></div></div>
+        <div class="pioneer-card"><div class="pioneer-avatar"><img src="ibraheem.jpeg"></div><div class="pioneer-info"><h4>Ibrahim Waheed</h4><div class="cohort">Publications</div><p>Established OIA's foundational publication standards and editorial integrity.</p></div></div>
+        <div class="pioneer-card"><div class="pioneer-avatar"><img src="Shahid.jpeg"></div><div class="pioneer-info"><h4>Shahroz Shahid</h4><div class="cohort">Activity Head</div><p>Designed and executed OIA's interactive awareness workshops.</p></div></div>
+        <div class="pioneer-card"><div class="pioneer-avatar"><img src="eman.jpeg"></div><div class="pioneer-info"><h4>Eman Anwar</h4><div class="cohort">Activity Head</div><p>Coordinated cross-departmental initiatives and institutional collaboration.</p></div></div>
+        <div class="pioneer-card"><div class="pioneer-avatar"><img src="ali.jpeg"></div><div class="pioneer-info"><h4>Ghous Ali Warraich</h4><div class="cohort">Media Head</div><p>Developed OIA's digital storytelling and multimedia strategy.</p></div></div>
+        <div class="pioneer-card"><div class="pioneer-avatar"><img src="hiba.jpeg"></div><div class="pioneer-info"><h4>Hiba Rubani</h4><div class="cohort">Director Public Relationships</div><p>Established OIA's peer mentorship network across institutions.</p></div></div>
       </div>
     </div>
   </div>
@@ -448,11 +384,9 @@
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     
-    // Update active states for both Navs
     const allBtns = document.querySelectorAll('nav button, .mobile-nav button');
     allBtns.forEach(b => b.classList.remove('active'));
     
-    // Find matching buttons by text content to sync Desktop and Mobile
     allBtns.forEach(b => {
       if(b.textContent === clickedBtn.textContent) b.classList.add('active');
     });
@@ -475,7 +409,6 @@
     document.body.style.overflow = '';
   }
 
-  // Close menu if user clicks outside
   document.addEventListener('click', function(e) {
     const menu = document.getElementById('mobileNav');
     const ham = document.getElementById('hamburger');
@@ -487,13 +420,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
