@@ -168,26 +168,60 @@
     }
     .notice-link:hover { background: #1a2d4e; }
 
-    /* ════ DIRECTORATE ════ */
-    .dir-img img {
+  /* ════ DIRECTORATE ════ */
+.dir-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.dir-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* makes it square */
+  background: #0a1628;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dir-img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
 }
 
-    /* ════ CORE TEAM ════ */
-    .team-avatar img {
+  /* ════ CORE TEAM ════ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.team-avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #132038;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-avatar img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
 }
 
-    /* ════ PIONEERS FIX ════ */
-    .pioneer-avatar {
+  /* ════ PIONEERS ════ */
+.pioneers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+
+.pioneer-avatar {
   width: 100%;
-  height: 280px;
+  aspect-ratio: 1 / 1;
   background: var(--navy);
   display: flex;
   align-items: center;
@@ -198,7 +232,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
 }
     /* ════ FOOTER ════ */
     footer { background: var(--navy); color: #8a9ab5; text-align: center; padding: 1.75rem 1.25rem; font-size: 0.78rem; letter-spacing: 0.04em; border-top: 1px solid rgba(201,168,76,0.2); line-height: 1.8; }
@@ -430,6 +463,7 @@
 
 </body>
 </html>
+
 
 
 
